@@ -35,7 +35,7 @@ router.post('/add-books', function(req, res, next){
   const libros_json = JSON.stringify(libros)
   fs.writeFileSync('db/books.json', libros_json, 'utf-8')
 
-  res.send('Todo ok')
+  res.redirect('/')
 
 })
 
