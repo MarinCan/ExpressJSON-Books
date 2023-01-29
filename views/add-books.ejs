@@ -10,9 +10,9 @@
 <body>
     <%- include('partials/navigation.ejs') %>
 
-    <section class="container vh-100 d-flex justify-content-center align-items-center">
+    <section id="add-book" class="container d-flex justify-content-center align-items-center">
 
-        <div class="card">
+        <div class="card bg-secondary text-white" style="width: 50%; margin: 1rem;">
             <div class="card-header text-center">
                 <h3>Añadir nuevo registro</h3>
             </div>
@@ -35,8 +35,8 @@
                         <label for="description">Descripción</label>
                         <textarea name="description" id="book-description" rows="3" class="form-control"></textarea>
                     </div>
-                    <div class="mb-3">
-                        <input type="submit" value="Guardar" class="btn btn-primary" required>
+                    <div class="mb-3 d-flex justify-content-center">
+                        <input type="submit" value="Guardar" class="btn btn-info" required>
                     </div>
                 </form>
             </div>
