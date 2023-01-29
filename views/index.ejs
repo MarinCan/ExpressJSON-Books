@@ -1,13 +1,30 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
+    <title> Libros JSON </title>
     <%- include('partials/head.ejs') %>
   </head>
   <body>
     <%- include('partials/navigation.ejs') %>
-    <h1><%= title %></h1>
-    <h1>PORTADA</h1>
-    <p>Welcome to <%= title %></p>
+
+    <section class="container d-flex flex-wrap">
+      <% for (let i=0; i< libros.length; i++){ %> 
+
+        <div class="card" style="width: 25%;">
+          <div class="card-header">
+            <h1> <%=libros[i].title %> </h1>
+          </div>
+          
+          <div class="card-body">
+            <img src=<%=libros[i].image %> >
+            <h3><%=libros[i].author %></h3>
+            <p><%=libros[i].description %></p>
+            <button>Eliminar</button>
+          </div>
+        </div>
+
+      <% } %> 
+
+    </section>
   </body>
 </html>

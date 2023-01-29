@@ -9,7 +9,41 @@
 </head>
 <body>
     <%- include('partials/navigation.ejs') %>
+
+    <section class="container vh-100 d-flex justify-content-center align-items-center">
+
+        <div class="card">
+            <div class="card-header text-center">
+                <h3>Añadir nuevo registro</h3>
+            </div>
+
+            <div class="card-body">
+                <form target="/add-book" method="post">
+                    <div class="mb-3">
+                        <label for="title">Título</label>
+                        <input name="title" type="text" placeholder="Título del libro" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label for="author">Autor</label>
+                        <input name="author" type="text" placeholder="Autor" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label for="image">URL de la Imagen</label>
+                        <input name="image" type="text" placeholder="http://book-image.com" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label for="description">Descripción</label>
+                        <textarea name="description" id="book-description" rows="3" class="form-control"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <input type="submit" value="Guardar" class="btn btn-primary" required>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </section>
     
-    <h1>Página de añadir libros</h1>
+    
 </body>
 </html>
