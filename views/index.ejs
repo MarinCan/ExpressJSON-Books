@@ -2,10 +2,23 @@
 <html>
   <head>
     <title> Libros JSON </title>
-    <%- include('partials/head.ejs') %>
+    <% if (modo === 'dark'){ %> 
+      <%- include('partials/head-dark.ejs') %>
+    <% } else { %> 
+      <%- include('partials/head.ejs') %>
+    <% } %> 
+    
   </head>
   <body>
-    <%- include('partials/navigation.ejs') %>
+    <% if (modo === 'dark'){ %> 
+      <%- include('partials/navigation-dark.ejs') %>
+    <% } else { %> 
+      <%- include('partials/navigation.ejs') %>
+    <% } %> 
+
+    <div>
+      <a href="/cookie"><button id="b-modo">Modo</button></a>
+    </div>
 
     <section class="container d-flex flex-wrap justify-content-center align-items-center">
       <% for (let i=0; i< libros.length; i++){ %> 

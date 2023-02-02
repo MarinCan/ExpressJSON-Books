@@ -36,14 +36,21 @@
                         <textarea name="description" id="book-description" rows="3" class="form-control"></textarea>
                     </div>
                     <div class="mb-3 d-flex justify-content-center">
-                        <input type="submit" value="Guardar" class="btn btn-info" required>
+                        <input onclick="confirmar()" type="submit" value="Guardar" class="btn btn-info" required>
+                        <!-- <button onclick="confirmar()" type="submit" value="Guardar" class="btn btn-info" required>Guardar</button> -->
                     </div>
                 </form>
             </div>
-
         </div>
     </section>
-    
+
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>  
+    <script>
+        function confirmar(){
+            Swal.fire('Libro añadido!')
+            window.setTimeout(()=> {window.location="/add-books"}, 10000)
+        }
+    </script>
     
 </body>
 </html>

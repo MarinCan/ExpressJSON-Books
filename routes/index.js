@@ -10,9 +10,27 @@ const libros = JSON.parse(libros_json)
 
 
 /* GET home page. */
-router.get('/', async function(req, res, next) {
-  res.render('index', { libros });
+router.get('/', function(req, res, next) {
+
+  if (req.cookies){
+    let modo = req.cookies.modo
+    res.render('index', { libros, modo });
+  } else {
+    res.render('index', { libros });
+  }
 });
+
+router.get('/cookie', function(req,res) {
+  // console.log(res.cookie)
+
+  if (req.cookies.modo === 'dark'){
+    res.cookie('modo', 'light')
+  } else {
+    res.cookie('modo', 'dark')
+  }
+  // res.send(req.cookies.modo)
+  res.redirect('/')
+})
 
 /* GET home page. -- MYSQL ver */
 router.get('/home2', async function(req, res, next) {

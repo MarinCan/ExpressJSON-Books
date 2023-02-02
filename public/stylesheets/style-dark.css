@@ -1,0 +1,22 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: rgb(71, 77, 82);
+}
+
+#b-modo{
+    padding: .4rem 0.6rem;
+    margin-top: .5rem;
+    margin-left: .5rem;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 1px 1px 4px black;
+}
+  
+img{
+    height: 500px;
+}
