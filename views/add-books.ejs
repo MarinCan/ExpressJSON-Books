@@ -18,7 +18,7 @@
             </div>
 
             <div class="card-body">
-                <form target="/add-book" method="post">
+                <form action="/add-books" method="post">
                     <div class="mb-3">
                         <label for="title">Título</label>
                         <input name="title" type="text" placeholder="Título del libro" class="form-control">
@@ -44,13 +44,15 @@
         </div>
     </section>
 
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>  
+    <!-- <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>  
+    
     <script>
         function confirmar(){
             Swal.fire('Libro añadido!')
-            window.setTimeout(()=> {window.location="/add-books"}, 10000)
+            
+            // window.setTimeout(()=> window.location="/add-books", 10000)
         }
-    </script>
+    </script> -->
     
 </body>
 </html>

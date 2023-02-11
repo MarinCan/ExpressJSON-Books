@@ -35,7 +35,7 @@ router.get('/cookie', function(req,res) {
 /* GET home page. -- MYSQL ver */
 router.get('/home2', async function(req, res, next) {
   const [result_books] = await pool.query('SELECT * FROM books')
-  console.log(result_books)
+  // console.log(result_books)
   res.render('home-2', { result_books })
 
   // res.json(result)
@@ -51,20 +51,26 @@ router.post('/add-books', function(req, res, next){
   // console.log(req.body)
   const { title, author, image, description} = req.body
 
-  let nuevo_libro = {
-    title: title,
-    author: author,
-    image: image,
-    description: description
+  if ( !title || !author || !image || !description ){
+
+    res.status(400).send('Faltan campos por rellenar en el formulario')
+
+  } else {
+
+    let nuevo_libro = {
+      title: title,
+      author: author,
+      image: image,
+      description: description
+    }
+  
+    libros.push(nuevo_libro)
+  
+    const libros_json = JSON.stringify(libros)
+    fs.writeFileSync('db/books.json', libros_json, 'utf-8')
+
+    res.redirect('/')
   }
-
-  libros.push(nuevo_libro)
-
-  const libros_json = JSON.stringify(libros)
-  fs.writeFileSync('db/books.json', libros_json, 'utf-8')
-
-  res.redirect('/')
-
 })
 
 
@@ -78,15 +84,21 @@ router.post('/add-books-db', function(req, res, next){
   // console.log(req.body)
   const { title, author, image, description} = req.body
 
-  pool.query("INSERT INTO books SET ?", {
-    title,
-    author,
-    image,
-    description
-  })
+  if ( !title || !author || !image || !description ){
 
-  res.redirect('/home2')
+    res.status(400).send('Faltan campos por rellenar en el formulario')
 
+  } else {
+
+    pool.query("INSERT INTO books SET ?", {
+      title,
+      author,
+      image,
+      description
+    })
+
+    res.redirect('/home2')
+  }
 })
 
 module.exports = router;
