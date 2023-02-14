@@ -58,12 +58,14 @@ router.post('/add-books', function(req, res, next){
   } else {
 
     let nuevo_libro = {
+      id: libros.length,
       title: title,
       author: author,
       image: image,
       description: description
     }
   
+    // console.log(libros.length)
     libros.push(nuevo_libro)
   
     const libros_json = JSON.stringify(libros)
@@ -80,7 +82,7 @@ router.get('/add-books-db', function(req, res, next) {
 });
 
 // Metodo POST para almacenar las variables del form y guardarlas en BBDD MYSQL
-router.post('/add-books-db', function(req, res, next){
+router.post('/add-books-db', async function(req, res, next){
   // console.log(req.body)
   const { title, author, image, description} = req.body
 
@@ -90,7 +92,7 @@ router.post('/add-books-db', function(req, res, next){
 
   } else {
 
-    pool.query("INSERT INTO books SET ?", {
+    await pool.query("INSERT INTO books SET ?", {
       title,
       author,
       image,
@@ -99,6 +101,27 @@ router.post('/add-books-db', function(req, res, next){
 
     res.redirect('/home2')
   }
+})
+
+router.get('/delete/:id', function(req, res, next){
+  console.log(libros[req.params.id].id)
+  let del_index = libros[req.params.id].id
+
+  libros.splice(del_index, 1)
+
+  const libros_json = JSON.stringify(libros)
+  fs.writeFileSync('db/books.json', libros_json, 'utf-8')
+
+  res.redirect('/')
+})
+
+
+router.get('/delete_mysql/:id', async function(req, res, next){
+  console.log(req.params.id)
+
+  await pool.query("DELETE FROM books WHERE id = ?", req.params.id)
+
+  res.redirect('/home2')
 })
 
 module.exports = router;

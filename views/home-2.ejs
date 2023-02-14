@@ -18,13 +18,15 @@
             <h3 class="card-title"> <%=result_books[i].title %> </h3>
             <p class="card-text">Autor: <%=result_books[i].author %></p>
             <p class="card-text"><b>Descripción: </b><%=result_books[i].description %></p>
-            <button class="btn btn-danger text-white">Eliminar</button>
+            <% let data_mysql = result_books[i].title  %>
+            <!-- <button class="btn btn-danger text-white">Eliminar</button> -->
+            <a href="/delete_mysql/<%= result_books[i].id %>" class="btn btn-danger text-white">Eliminar</a>
+
           </div>
         </div>
 
       <% } %> 
 
     </section>
-
   </body>
 </html>

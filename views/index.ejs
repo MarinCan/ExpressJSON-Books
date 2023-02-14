@@ -31,7 +31,7 @@
             <h3 class="card-title"> <%=libros[i].title %> </h3>
             <p class="card-text">Autor: <%=libros[i].author %></p>
             <p class="card-text"><b>Descripción: </b><%=libros[i].description %></p>
-            <button onclick="confirmar()" class="btn btn-danger text-white">Eliminar</button>
+            <button onclick="confirmar(<%=libros[i].id %>)" class="btn btn-danger text-white">Eliminar</button>
           </div>
         </div>
 
@@ -42,7 +42,8 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>  
     
     <script>
-        function confirmar(){
+        function confirmar(datos){
+          console.log(datos)
           Swal.fire({
           title: '¿Estás seguro?',
           text: 'Vas a eliminar ',
@@ -58,7 +59,8 @@
               icon: 'error',
               showConfirmButton: false
             })
-              window.setTimeout(()=> window.location="/", 1000)
+            // window.setTimeout(()=> window.location="/", 1000)
+            window.location= '/delete/'+ datos
             }
           })
         }
